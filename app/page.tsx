@@ -247,7 +247,7 @@ export default function SupplyBaseAzerbaijan() {
                   className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap"
                 >
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm font-medium">050 240 22 30</span>
+                  <span className="text-base font-medium">050 240 22 30</span>
                 </div>
                 <Button
                   onClick={() => scrollToSection("rfq")}

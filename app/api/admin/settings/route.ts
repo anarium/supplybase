@@ -1,13 +1,30 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { neon } from "@neondatabase/serverless"
 
-// Verify token function
+// Simple in-memory storage for demo purposes
+// In production, you would use a proper database
+let siteSettings = {
+  title: "Supply Base Azerbaijan - Procurement as a Service",
+  favicon: "/favicon.ico",
+  metaDescription:
+    "Supply Base Azerbaijan provides comprehensive procurement and supply chain solutions for various industries. Professional sourcing, quality assurance, and reliable delivery services.",
+  metaKeywords:
+    "procurement, supply chain, Azerbaijan, sourcing, industrial supplies, construction materials, oil gas equipment",
+  socialTitle: "Supply Base Azerbaijan - Satınalma və Təchizat Xidməti",
+  socialImage: "/images/sba-logo.webp",
+  headerSnippet: "",
+  footerSnippet: "",
+  analyticsCode: "",
+}
+
 function verifyToken(token: string) {
   try {
     const payload = JSON.parse(Buffer.from(token, "base64").toString())
+
+    // Check if token is expired
     if (payload.exp && Date.now() > payload.exp) {
       return null
     }
+
     return payload.admin === true ? payload : null
   } catch {
     return null
@@ -16,9 +33,11 @@ function verifyToken(token: string) {
 
 function verifyAuth(request: NextRequest) {
   const authHeader = request.headers.get("authorization")
+
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return false
   }
+
   const token = authHeader.substring(7)
   return verifyToken(token) !== null
 }
@@ -35,18 +54,9 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const sql = neon(process.env.DATABASE_URL!)
-    const settingsRows = await sql`SELECT * FROM site_settings`
-
-    // Convert array of rows to settings object
-    const settings = settingsRows.reduce((acc, row) => {
-      acc[row.key] = row.value
-      return acc
-    }, {})
-
     return NextResponse.json({
       success: true,
-      settings,
+      settings: siteSettings,
     })
   } catch (error) {
     console.error("Error retrieving settings:", error)
@@ -73,24 +83,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: "Başlıq və meta təsvir tələb olunur" }, { status: 400 })
     }
 
-    const sql = neon(process.env.DATABASE_URL!)
+    // Update settings
+    siteSettings = { ...siteSettings, ...newSettings }
 
-    // Update each setting in the database
-    for (const [key, value] of Object.entries(newSettings)) {
-      await sql`
-        INSERT INTO site_settings (key, value, updated_at) 
-        VALUES (${key}, ${value}, NOW())
-        ON CONFLICT (key) DO UPDATE SET value = ${value}, updated_at = NOW()
-      `
-    }
+    console.log("Settings updated:", siteSettings)
 
     return NextResponse.json({
       success: true,
       message: "Parametrlər uğurla yeniləndi",
-      settings: newSettings,
+      settings: siteSettings,
     })
   } catch (error) {
     console.error("Error updating settings:", error)
     return NextResponse.json({ success: false, message: "Parametrləri yeniləmək mümkün olmadı" }, { status: 500 })
   }
 }
+
+// Export settings for use in layout
+export { siteSettings }

@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 // In a real application, you would fetch this from your database
 // For now, we'll use default values that can be updated via admin panel
 const defaultSettings = {
-  title: "Supply Base Azerbaijan - Procurement as a Service",
+  title: "Supply Base Azerbaijan - Procurement and Supply / Satınalma və Təchizat",
   metaDescription:
     "Supply Base Azerbaijan provides comprehensive procurement and supply chain solutions for various industries. Professional sourcing, quality assurance, and reliable delivery services.",
   metaKeywords:
@@ -93,7 +93,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Supply Base Azerbaijan",
+              name: "Supply Base Azerbaijan - Təchizat Şirkəti",
               url: "https://supplybase.az",
               logo: "https://supplybase.az/images/sba-logo.webp",
               description: defaultSettings.metaDescription,
