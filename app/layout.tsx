@@ -15,7 +15,7 @@ const defaultSettings = {
     "procurement, supply chain, Azerbaijan, sourcing, industrial supplies, construction materials, oil gas equipment",
   socialTitle: "Supply Base Azerbaijan - Satınalma və Təchizat Xidməti",
   socialImage: "/images/sba-logo.webp",
-  favicon: "/favicon.ico",
+  favicon: "https://links.az/uploads/files/e6ec371e46d8c0009d805b1b999b9a1d.png",
 }
 
 export const metadata: Metadata = {
