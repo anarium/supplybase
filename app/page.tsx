@@ -328,11 +328,11 @@ export default function SupplyBaseAzerbaijan() {
       <section id="hero" className="pt-20 pb-16 px-4 relative overflow-hidden">
         {/* Hero Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 to-slate-900/90 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-700/90 to-slate-900/90 z-10"></div>
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/images/hero-bg.png')`,
+              backgroundImage: `url('https://links.az/uploads/files/bfe75037cd6405bcc46e9c19af274a3c.png')`,
             }}
           ></div>
           {/* Additional overlay for better text readability */}

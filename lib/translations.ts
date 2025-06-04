@@ -42,12 +42,12 @@ export const translations = {
     // About Cards
     comprehensiveSolutions: "Hərtərəfli Həllər",
     comprehensiveDesc:
-      "Çoxsaylı sənaye sahələrində bütün təchizat zənciri tələblərinizi əhatə edən tam tədarük xidmətləri.",
-    industryExpertise: "Sənaye Təcrübəsi",
+      "Bir çox sənaye sahələrində bütün təchizat zənciri tələblərinizi əhatə edən tam tədarük xidmətləri təklif edirik.",
+    industryExpertise: "Sahəvi Təcrübə",
     industryExpertiseDesc: "Tikinti, neft və qaz, sənaye və kommersiya sektorlarında dərin bilik və təcrübə.",
     uninterruptedOps: "Fasiləsiz Əməliyyatlar",
     uninterruptedOpsDesc:
-      "Etibarlı təchizat zənciri idarəetməsi ilə biznes fəaliyyətlərinizin problemsiz davam etməsini təmin edirik.",
+      "Etibarlı təchizat zənciri idarəetməsi ilə biznes fəaliyyətlərinizin problemsiz və gecikmələrsiz davam etməsini təmin edirik.",
 
     // Procurement as a Service
     procurementTitle: "Satınalma və Təchizat Xidməti (PaaS)",
