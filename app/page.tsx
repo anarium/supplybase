@@ -217,25 +217,25 @@ export default function SupplyBaseAzerbaijan() {
               <div className="flex items-center space-x-1">
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
                 >
                   {t("about")}
                 </button>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
                 >
                   {t("services")}
                 </button>
                 <button
                   onClick={() => scrollToSection("faq")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
                 >
                   {t("faq")}
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
                 >
                   {t("contact")}
                 </button>
@@ -251,7 +251,7 @@ export default function SupplyBaseAzerbaijan() {
                 </div>
                 <Button
                   onClick={() => scrollToSection("rfq")}
-                  className="bg-blue-600 hover:bg-blue-700 shadow-sm px-6 py-2 whitespace-nowrap"
+                  className="bg-blue-600 hover:bg-blue-700 shadow-sm px-6 py-2 whitespace-nowrap text-base"
                 >
                   {t("getQuote")}
                 </Button>
@@ -576,12 +576,6 @@ export default function SupplyBaseAzerbaijan() {
 
           {/* Procurement as a Service Details */}
           <div className="mb-16">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-4">
-                {t("procurementTitle")}
-              </h3>
-              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">{t("procurementSubtitle")}</p>
-            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               {[
@@ -1097,7 +1091,7 @@ export default function SupplyBaseAzerbaijan() {
           </div>
           <div className="border-t border-slate-700 mt-8 pt-8 text-center">
             <p className="text-slate-400 text-sm">
-              © {new Date().getFullYear()} Supply Base Azerbaijan. {t("rightsReserved")}
+              © {new Date().getFullYear()} SUPPLY BASE AZERBAIJAN. {t("rightsReserved")}
             </p>
           </div>
         </div>
