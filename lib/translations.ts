@@ -219,7 +219,7 @@ export const translations = {
   en: {
     // Navigation
     home: "Home",
-    about: "About",
+    about: "About Us",
     services: "Services",
     contact: "Contact",
     getQuote: "Get Quote",

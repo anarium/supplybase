@@ -185,13 +185,13 @@ export default function SupplyBaseAzerbaijan() {
         <div className="container mx-auto px-4 py-3 lg:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 lg:space-x-4">
-              <Image
+              <a href="http://www.supplybase.az/"><Image
                 src="/images/sba-logo.webp"
                 alt="Supply Base Azerbaijan"
                 width={80}
                 height={48}
                 className="h-12 lg:h-14 w-auto"
-              />
+              /></a>
               <div className="hidden sm:block whitespace-nowrap">
                 <h1 className="text-lg lg:text-xl font-bold text-slate-800 dark:text-white">Supply Base Azerbaijan</h1>
                 <p className="text-sm lg:text-base text-slate-600 dark:text-slate-300 font-medium">{t("tagline")}</p>
@@ -244,7 +244,7 @@ export default function SupplyBaseAzerbaijan() {
               <div className="flex items-center space-x-3">
                 <div
                   onClick={() => scrollToSection("contact")}
-                  className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap"
+                  className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-950 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap"
                 >
                   <Phone className="h-4 w-4 flex-shrink-0" />
                   <span className="text-base font-medium">050 240 22 30</span>
@@ -761,9 +761,9 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">Telefon</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-blue-600 mb-2">050 240 22 30</p>
+                <p className="text-lg font-semibold text-blue-600 mb-2">(+994 50) 240 22 30</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
-                  Dərhal yardım üçün bizə zəng edin
+                  Daha sürətli xidmət üçün bizə zəng edin. Call for fast response. Звоните для оперативного ответа.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -780,9 +780,9 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">WhatsApp</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-green-600 mb-2">050 240 22 30</p>
+                <p className="text-lg font-semibold text-green-600 mb-2">(+994 50) 240 22 30</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
-                  WhatsApp söhbəti başladın
+                  WhatsApp ilə sorğunuzu göndərin. Send your inquiry via WhatsApp. Отправьте ваш запрос через WhatsApp.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -1020,13 +1020,15 @@ export default function SupplyBaseAzerbaijan() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <Image
-                  src="/images/sba-logo.webp"
-                  alt="Supply Base Azerbaijan"
-                  width={70}
-                  height={42}
-                  className="h-11 w-auto"
-                />
+                <a href="http://www.supplybase.az">
+                  <Image
+                    src="/images/sba-logo.webp"
+                    alt="Supply Base Azerbaijan"
+                    width={70}
+                    height={42}
+                    className="h-11 w-auto"
+                  />
+                </a>
                 <div>
                   <h3 className="text-xl font-bold">Supply Base Azerbaijan</h3>
                   <p className="text-slate-400 text-sm">{t("tagline")}</p>
