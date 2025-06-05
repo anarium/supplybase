@@ -444,41 +444,37 @@ export default function SupplyBaseAzerbaijan() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="/images/procurement-process.png" alt="Procurement Process" fill className="object-cover" />
+                <Image src="https://links.az/uploads/files/554ee81c08a41ecd9dd0e4992af2c0ea.png" alt="SBA - Procurement Process" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold">{t("needsAnalysis")}</h3>
-                  <p className="text-sm opacity-90">Ehtiyac müəyyənləşdirmə</p>
+                  <h2 className="text-2xl font-semibold">{t("needsAnalysis")}</h2>
                 </div>
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="/images/supplier-network.png" alt="Supplier Network" fill className="object-cover" />
+                <Image src="https://links.az/uploads/files/24b7a4337f1c302620d4f979c41f4e7a.png" alt="SBA - Supplier Network" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold">{t("supplierNetwork")}</h3>
-                  <p className="text-sm opacity-90">Təchizatçı şəbəkəsi</p>
+                  <h2 className="text-2xl font-semibold">{t("supplierNetwork")}</h2>
                 </div>
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="/images/quality-control.png" alt="Quality Control" fill className="object-cover" />
+                <Image src="https://links.az/uploads/files/3deeb7442bf16b98188040692a5f27fa.png" alt="SBA - Quality Control" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold">{t("qualityAssurance")}</h3>
-                  <p className="text-sm opacity-90">Keyfiyyət nəzarəti</p>
+                  <h2 className="text-2xl font-semibold">{t("qualityAssurance")}</h2>
                 </div>
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-600">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="/images/end-to-end-service.png" alt="End to End Service" fill className="object-cover" />
+                <Image src="https://links.az/uploads/files/f2a1e8b230d20323579417d651832030.png" alt="SBA - End to End Service" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="font-semibold">{t("endToEndService")}</h3>
-                  <p className="text-sm opacity-90">Tam xidmət</p>
+                  <h2 className="text-2xl font-semibold">{t("endToEndService")}</h2>
                 </div>
               </div>
             </div>
@@ -635,21 +631,21 @@ export default function SupplyBaseAzerbaijan() {
                 title: t("constructionSupplies"),
                 description: t("constructionDesc"),
                 industries: [t("construction"), "Commercial", "Infrastructure"],
-                image: "/images/construction-materials.png",
+                image: "https://links.az/uploads/files/240840fb5a525304d5230c21d5521eb4.png",
               },
               {
                 icon: Truck,
                 title: t("oilGasSupplies"),
                 description: t("oilGasDesc"),
                 industries: ["Upstream", "Downstream", "Petrochemical"],
-                image: "/images/oil-gas-equipment.png",
+                image: "https://links.az/uploads/files/342f14cf8a78e355ce0efd1deb082b4d.png",
               },
               {
                 icon: Shield,
                 title: t("safetyCompliance"),
                 description: t("safetyDesc"),
                 industries: ["HSE", "Quality Control", "Certification"],
-                image: "/images/safety-equipment.png",
+                image: "https://links.az/uploads/files/2ee12d60df5dae2af49b2fd246ea43ea.png",
               },
             ].map((service, index) => (
               <Card
