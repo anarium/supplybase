@@ -85,6 +85,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="canonical" href="https://supplybase.az" />
+        <script defer data-domain="supplybase.az" src="https://the.base.az/js/script.js"></script>
 
         {/* Structured Data for Organization */}
         <script
@@ -93,7 +94,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Supply Base Azerbaijan - Təchizat Şirkəti",
+              name: "Supply Base Azerbaijan - Təchizat Şirkəti / Supply Company",
               url: "https://supplybase.az",
               logo: "https://supplybase.az/images/sba-logo.webp",
               description: defaultSettings.metaDescription,
