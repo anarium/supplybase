@@ -87,18 +87,18 @@ export default function RootLayout({
         <link rel="canonical" href="https://supplybase.az" />
         <script defer data-domain="supplybase.az" src="https://the.base.az/js/script.js"></script>
        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y7CP7DKJM"></script>
-        
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-7Y7CP7DKJM');
-            `,
-          }}
-        />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7YCP7DKJM"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-Y7YCP7DKJM');
+              `,
+            }}
+          ></script>
+
 
 
         {/* Structured Data for Organization */}
