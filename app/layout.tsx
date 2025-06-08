@@ -86,8 +86,9 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         <link rel="canonical" href="https://supplybase.az" />
         <script defer data-domain="supplybase.az" src="https://the.base.az/js/script.js"></script>
-        {/* Google tag (gtag.js) */}
+       
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y7CP7DKJM"></script>
+        
         <script
           dangerouslySetInnerHTML={{
             __html: `
