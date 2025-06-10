@@ -10,9 +10,9 @@ const inter = Inter({ subsets: ["latin"] })
 const defaultSettings = {
   title: "Supply Base Azerbaijan - Procurement and Supply / Satınalma və Təchizat",
   metaDescription:
-    "Supply Base Azerbaijan provides comprehensive procurement and supply chain solutions for various industries. Professional sourcing, quality assurance, and reliable delivery services.",
+    "Supply Base Azerbaijan - Professional procurement & supply chain solutions. Peşəkar tədarük və təchizat zənciri həlləri. Expert sourcing, quality assurance & reliable delivery services.",
   metaKeywords:
-    "procurement, supply chain, Azerbaijan, sourcing, industrial supplies, construction materials, oil gas equipment",
+    "təchizat şirkəti, supply company, Supply Base Azerbaijan, procurement, supply chain, sourcing, industrial supplies, construction materials, oil gas equipment, HSE equipment",
   socialTitle: "Supply Base Azerbaijan - Satınalma və Təchizat Xidməti",
   socialImage: "/images/sba-logo.webp",
   favicon: "https://links.az/uploads/files/e6ec371e46d8c0009d805b1b999b9a1d.png",

@@ -341,7 +341,7 @@ export default function SupplyBaseAzerbaijan() {
 
         <div className="container mx-auto relative z-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh]">
-            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 pt-[25px]">
               <Badge className="mb-4 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                 {t("tagline")}
               </Badge>
