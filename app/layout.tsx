@@ -12,7 +12,7 @@ const defaultSettings = {
   metaDescription:
     "Supply Base Azerbaijan - Professional procurement & supply chain solutions. Peşəkar tədarük və təchizat zənciri həlləri. Expert sourcing, quality assurance & reliable delivery services.",
   metaKeywords:
-    "təchizat şirkəti, supply company, Supply Base Azerbaijan, procurement, supply chain, sourcing, industrial supplies, construction materials, oil gas equipment, HSE equipment",
+    "təchizat şirkəti, supply company, Supply Base Azerbaijan, procurement, supply chain, B2B. sourcing, industrial supplies, construction materials, oil gas equipment, HSE equipment, professional procurement services Azerbaijan",
   socialTitle: "Supply Base Azerbaijan - Satınalma və Təchizat Xidməti",
   socialImage: "/images/sba-logo.webp",
   favicon: "https://links.az/uploads/files/e6ec371e46d8c0009d805b1b999b9a1d.png",

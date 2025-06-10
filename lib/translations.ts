@@ -77,7 +77,7 @@ export const translations = {
     // Commitment
     commitmentTitle: "Bizim Öhdəliyimiz",
     commitmentText:
-      "Biz müştərilərimizin əsas biznes fəaliyyətlərinə diqqət yetirə bilməsi üçün təchizat zənciri mürəkkəbliklərini həll edərkən müstəsna tədarük xidmətləri təqdim etməyə sadiqik.",
+      "Biz müştərilərimizin əsas biznes fəaliyyətlərinə diqqət yetirə bilməsi üçün təchizat zənciri ehtiyaclarını həll edərkən müstəsna tədarük xidmətləri təqdim edirik.",
     projectsCompleted: "Tamamlanmış Layihə",
     clientSatisfaction: "Müştəri Məmnuniyyəti",
 
