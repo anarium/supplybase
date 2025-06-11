@@ -17,7 +17,7 @@ export const translations = {
     heroTitleHighlight: "Satınalma və Təchizat",
     heroTitleEnd: "Ehtiyaclarınızın Həlli",
     heroSubtitle:
-      "Supply Base Azerbaijan müxtəlif sənaye sahələrindən olan şirkətlərə fasiləsiz biznes fəaliyyəti üçün təchizat zənciri ehtiyaclarını ödəməkdə kömək edən hərtərəfli tədarük şirkətidir.",
+      "Supply Base Azerbaijan müxtəlif sənaye sahələrindən olan şirkətlərə fasiləsiz biznes fəaliyyəti üçün təchizat zənciri ehtiyaclarını ödəməkdə kömək edən hərtərəfli tədarük şirkətidir. Siz tələb edin, biz təchiz edək.",
     requestQuote: "Sorğunuzu Form ilə göndərin",
     whatsappUs: "WhatsApp ilə  əlaqə",
     emailUs: "E-mail yazın",
@@ -66,7 +66,7 @@ export const translations = {
     // Why Choose Us
     whyChooseTitle: "Niyə Supply Base Azerbaijan seçməlisiniz?",
     whyChooseItems: [
-      "Təsdiqlənmiş təchizatçı və istehsalçıların geniş şəbəkəsi",
+      "Etibarlı təchizatçı və istehsalçıların geniş şəbəkəsi",
       "Keyfiyyət təminatı və uyğunluq idarəetməsi",
       "Sərfəli tədarük strategiyaları",
       "Vaxtında çatdırılma və logistika koordinasiyası",
