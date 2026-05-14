@@ -5,7 +5,7 @@ export const translations = {
     about: "Haqqımızda",
     services: "Xidmətlər",
     contact: "Əlaqə",
-    getQuote: "Sorğu göndər",
+    getQuote: "Təklif al",
     faq: "FAQ",
 
     // Header
@@ -15,11 +15,11 @@ export const translations = {
     // Hero Section
     heroTitle: "Sizin",
     heroTitleHighlight: "Satınalma və Təchizat",
-    heroTitleEnd: "Ehtiyaclarınızın Həlli",
+    heroTitleEnd: "Xidməti Həlli",
     heroSubtitle:
-      "Supply Base Azerbaijan müxtəlif sənaye sahələrindən olan şirkətlərə fasiləsiz biznes fəaliyyəti üçün təchizat zənciri ehtiyaclarını ödəməkdə kömək edən hərtərəfli tədarük şirkətidir. Siz tələb edin, biz təchiz edək.",
+      "Supply Base Azerbaijan müxtəlif sənaye sahələrindən olan şirkətlərə və fərdlərə fasiləsiz biznes fəaliyyəti üçün təchizat zənciri ehtiyaclarını ödəməkdə kömək edən hərtərəfli tədarük şirkətidir.",
     requestQuote: "Sorğunuzu Form ilə göndərin",
-    whatsappUs: "WhatsApp ilə  əlaqə",
+    whatsappUs: "WhatsApp sürətli əlaqə",
     emailUs: "E-mail yazın",
     callUs: "Zəng edin",
 
@@ -42,12 +42,12 @@ export const translations = {
     // About Cards
     comprehensiveSolutions: "Hərtərəfli Həllər",
     comprehensiveDesc:
-      "Bir çox sənaye sahələrində bütün təchizat zənciri tələblərinizi əhatə edən tam tədarük xidmətləri təklif edirik.",
-    industryExpertise: "Sahəvi Təcrübə",
+      "Çoxsaylı sənaye sahələrində bütün təchizat zənciri tələblərinizi əhatə edən tam tədarük xidmətləri.",
+    industryExpertise: "Sənaye Təcrübəsi",
     industryExpertiseDesc: "Tikinti, neft və qaz, sənaye və kommersiya sektorlarında dərin bilik və təcrübə.",
     uninterruptedOps: "Fasiləsiz Əməliyyatlar",
     uninterruptedOpsDesc:
-      "Etibarlı təchizat zənciri idarəetməsi ilə biznes fəaliyyətlərinizin problemsiz və gecikmələrsiz davam etməsini təmin edirik.",
+      "Etibarlı təchizat zənciri idarəetməsi ilə biznes fəaliyyətlərinizin problemsiz davam etməsini təmin edirik.",
 
     // Procurement as a Service
     procurementTitle: "Satınalma və Təchizat Xidməti (PaaS)",
@@ -66,7 +66,7 @@ export const translations = {
     // Why Choose Us
     whyChooseTitle: "Niyə Supply Base Azerbaijan seçməlisiniz?",
     whyChooseItems: [
-      "Etibarlı təchizatçı və istehsalçıların geniş şəbəkəsi",
+      "Təsdiqlənmiş təchizatçı və istehsalçıların geniş şəbəkəsi",
       "Keyfiyyət təminatı və uyğunluq idarəetməsi",
       "Sərfəli tədarük strategiyaları",
       "Vaxtında çatdırılma və logistika koordinasiyası",
@@ -77,7 +77,7 @@ export const translations = {
     // Commitment
     commitmentTitle: "Bizim Öhdəliyimiz",
     commitmentText:
-      "Biz müştərilərimizin əsas biznes fəaliyyətlərinə diqqət yetirə bilməsi üçün təchizat zənciri ehtiyaclarını həll edərkən müstəsna tədarük xidmətləri təqdim edirik.",
+      "Biz müştərilərimizin əsas biznes fəaliyyətlərinə diqqət yetirə bilməsi üçün təchizat zənciri mürəkkəbliklərini həll edərkən müstəsna tədarük xidmətləri təqdim etməyə sadiqik.",
     projectsCompleted: "Tamamlanmış Layihə",
     clientSatisfaction: "Müştəri Məmnuniyyəti",
 
@@ -116,12 +116,12 @@ export const translations = {
       {
         question: "Satınalma və Təchizat Xidməti (PaaS) nədir?",
         answer:
-          "PaaS (Procurement as a Service) - bu, biznesinizin bütün və qismi təchizat ehtiyaclarını bizim komandamızın idarə etdiyi xidmət modelidir. Siz bizə nəyə ehtiyacınız olduğunu deyirsiniz, biz isə mənbələri tapır, qiymətləri müqayisə edir, keyfiyyəti yoxlayır və sizə çatdırırıq.",
+          "PaaS - bu, biznesinizin bütün təchizat ehtiyaclarını bizim komandamızın idarə etdiyi xidmət modelidir. Siz bizə nəyə ehtiyacınız olduğunu deyirsiniz, biz isə mənbələri tapır, qiymətləri müqayisə edir, keyfiyyəti yoxlayır və sizə çatdırırıq.",
       },
       {
         question: "Necə sifariş verə bilərəm?",
         answer:
-          "Sifariş vermək üçün 4 yol var: 1) sales@supplybase.az ünvanına email göndərin, 2) +994 50 240 22 30 nömrəsinə zəng edin, 3) WhatsApp vasitəsilə bizə yazın. 4) Saytımızdakı RFQ formasını doldurun,Peşəkar təchizatçı komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.",
+          "Sifariş vermək üçün 4 yol var: 1) Saytımızdakı RFQ formasını doldurun, 2) info@supplybase.az ünvanına email göndərin, 3) +994 50 240 22 30 nömrəsinə zəng edin, 4) WhatsApp vasitəsilə bizə yazın. Komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.",
       },
       {
         question: "Hansı sənaye sahələrində xidmət göstərirsiniz?",
@@ -179,7 +179,7 @@ export const translations = {
     commercial: "Kommersiya",
     other: "Digər",
 
-    selectUrgency: "Təcililik səviyyəsini seçin",
+    selectUrgency: "Təcililik seçin",
     urgent: "Təcili (1 həftə ərzində)",
     standard: "Standart (1-2 həftə)",
     flexible: "Uyğun (2-6 həftə)",
@@ -219,7 +219,7 @@ export const translations = {
   en: {
     // Navigation
     home: "Home",
-    about: "About Us",
+    about: "About",
     services: "Services",
     contact: "Contact",
     getQuote: "Get Quote",
@@ -236,7 +236,7 @@ export const translations = {
     heroSubtitle:
       "Supply Base Azerbaijan is a comprehensive supply company helping companies and individuals from various industries achieve and fulfill their supply chain needs for uninterrupted business activities.",
     requestQuote: "Send Request via Form",
-    whatsappUs: "WhatsApp",
+    whatsappUs: "WhatsApp Quick Contact",
     emailUs: "Write Email",
     callUs: "Call Us",
 
@@ -252,7 +252,7 @@ export const translations = {
 
     // About Section
     aboutBadge: "About Supply Base Azerbaijan",
-    aboutTitle: "Your Trusted Supply Partner",
+    aboutTitle: "Your Trusted Procurement Partner",
     aboutSubtitle:
       'We specialize in comprehensive supply solutions and operate as a "Procurement and Supply Service" provider to ensure your business operations. Send us your requests, let our team get back to you with offers in the shortest time.',
 
@@ -334,12 +334,12 @@ export const translations = {
       {
         question: "What is Procurement as a Service (PaaS)?",
         answer:
-          "PaaS is a service model where our team manages all or partial your business supply needs. You tell us what you need, and we find sources, compare prices, check quality, and deliver to you.",
+          "PaaS is a service model where our team manages all your business supply needs. You tell us what you need, and we find sources, compare prices, check quality, and deliver to you.",
       },
       {
         question: "How can I place an order?",
         answer:
-          "There are 4 ways to place an order: 2) Send an email to sales@supplybase.az, 3) Call +994 50 240 22 30, 4) Contact us via WhatsApp, 4) Fill out the RFQ form on our website. Our team will contact you within 24 hours.",
+          "There are 4 ways to place an order: 1) Fill out the RFQ form on our website, 2) Send an email to info@supplybase.az, 3) Call +994 50 240 22 30, 4) Contact us via WhatsApp. Our team will contact you within 24 hours.",
       },
       {
         question: "Which industries do you serve?",
@@ -436,21 +436,21 @@ export const translations = {
     about: "О нас",
     services: "Услуги",
     contact: "Контакты",
-    getQuote: "Отправить запрос",
+    getQuote: "Получить предложение",
     faq: "FAQ",
 
     // Header
-    tagline: "Закупки и Поставки как Услуга",
+    tagline: "Закупки и поставки как услуга",
     phone: "Телефон",
 
     // Hero Section
     heroTitle: "Ваше",
-    heroTitleHighlight: "База Закупок и Снабжения",
-    heroTitleEnd: "по Запросу",
+    heroTitleHighlight: "Решение Закупок",
+    heroTitleEnd: "и Поставок",
     heroSubtitle:
       "Supply Base Azerbaijan - это комплексная компания поставок, помогающая компаниям и частным лицам из различных отраслей достигать и выполнять свои потребности в цепи поставок для непрерывной деловой активности.",
-    requestQuote: "Запрос через форму",
-    whatsappUs: "WhatsApp",
+    requestQuote: "Отправить запрос через форму",
+    whatsappUs: "WhatsApp быстрая связь",
     emailUs: "Написать Email",
     callUs: "Позвонить",
 
@@ -551,7 +551,7 @@ export const translations = {
       {
         question: "Как я могу разместить заказ?",
         answer:
-          "Есть 4 способа разместить заказ: 1) Отправьте email на sales@supplybase.az, 2) Позвоните +994 50 240 22 30, 3) Свяжитесь с нами через WhatsApp, 4) Заполните форму RFQ на нашем сайте. Наша команда свяжется с вами в течение 24 часов.",
+          "Есть 4 способа разместить заказ: 1) Заполните форму RFQ на нашем сайте, 2) Отправьте письмо на info@supplybase.az, 3) Позвоните по номеру +994 50 240 22 30, 4) Свяжитесь с нами через WhatsApp. Наша команда свяжется с вами в течение 24 часов.",
       },
       {
         question: "В каких отраслях вы работаете?",
