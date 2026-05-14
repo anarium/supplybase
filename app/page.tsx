@@ -155,7 +155,7 @@ export default function SupplyBaseAzerbaijan() {
   }
 
   const openEmail = () => {
-    window.location.href = "mailto:sales@supplybase.az"
+    window.location.href = "mailto:info@supplybase.az"
   }
 
   const makeCall = () => {
@@ -805,7 +805,7 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">{t("emailTitle")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-purple-600 mb-2">sales@supplybase.az</p>
+                <p className="text-lg font-semibold text-purple-600 mb-2">info@supplybase.az</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">{t("emailDesc")}</CardDescription>
               </CardContent>
             </Card>
@@ -1084,7 +1084,7 @@ export default function SupplyBaseAzerbaijan() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-blue-400" />
-                  <span className="text-slate-300 text-sm">sales@supplybase.az</span>
+                  <span className="text-slate-300 text-sm">info@supplybase.az</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MessageCircle className="h-4 w-4 text-green-400" />
