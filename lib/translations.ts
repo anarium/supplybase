@@ -147,7 +147,7 @@ export const translations = {
 
     // RFQ
     rfqBadge: "Təklif Sorğusu",
-    rfqTitle: "Sorğunuzu Göndərin Təklifinizi Alın",
+    rfqTitle: "Qiymət Təklifi Sorğusu",
     rfqSubtitle:
       "Tədarük ehtiyaclarınız haqqında bizə məlumat verin və tələblərinizə uyğun ətraflı təklif təqdim edəcəyik.",
 
