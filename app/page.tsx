@@ -151,7 +151,7 @@ export default function SupplyBaseAzerbaijan() {
   }
 
   const openWhatsApp = () => {
-    window.open("https://wa.me/994502402230", "_blank")
+    window.open("https://wa.me/994556300093", "_blank")
   }
 
   const openEmail = () => {
@@ -159,7 +159,7 @@ export default function SupplyBaseAzerbaijan() {
   }
 
   const makeCall = () => {
-    window.location.href = "tel:+994502402230"
+    window.location.href = "tel:+994556300093"
   }
 
   useEffect(() => {
@@ -1080,7 +1080,7 @@ export default function SupplyBaseAzerbaijan() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-4 w-4 text-blue-400" />
-                  <span className="text-slate-300 text-sm">050 240 22 30</span>
+                  <span className="text-slate-300 text-sm">055 630 00 93</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-blue-400" />
