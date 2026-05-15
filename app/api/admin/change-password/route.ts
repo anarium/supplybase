@@ -1,22 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { verify } from "jsonwebtoken"
 
 // Import the current password (in production, use proper database)
 let adminPassword = "admin123"
 
-function verifyToken(token: string) {
-  try {
-    const payload = JSON.parse(Buffer.from(token, "base64").toString())
-
-    // Check if token is expired
-    if (payload.exp && Date.now() > payload.exp) {
-      return null
-    }
-
-    return payload.admin === true ? payload : null
-  } catch {
-    return null
-  }
-}
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-this-in-production"
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,9 +21,10 @@ export async function POST(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const decoded = verifyToken(token)
 
-    if (!decoded) {
+    try {
+      verify(token, JWT_SECRET)
+    } catch (jwtError) {
       return NextResponse.json(
         {
           success: false,

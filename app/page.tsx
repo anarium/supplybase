@@ -155,7 +155,7 @@ export default function SupplyBaseAzerbaijan() {
   }
 
   const openEmail = () => {
-    window.location.href = "mailto:sales@supplybase.az"
+    window.location.href = "mailto:info@supplybase.az"
   }
 
   const makeCall = () => {
@@ -185,13 +185,13 @@ export default function SupplyBaseAzerbaijan() {
         <div className="container mx-auto px-4 py-3 lg:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 lg:space-x-4">
-              <a href="http://www.supplybase.az/"><Image
+              <Image
                 src="/images/sba-logo.webp"
                 alt="Supply Base Azerbaijan"
                 width={80}
                 height={48}
                 className="h-12 lg:h-14 w-auto"
-              /></a>
+              />
               <div className="hidden sm:block whitespace-nowrap">
                 <h1 className="text-lg lg:text-xl font-bold text-slate-800 dark:text-white">Supply Base Azerbaijan</h1>
                 <p className="text-sm lg:text-base text-slate-600 dark:text-slate-300 font-medium">{t("tagline")}</p>
@@ -217,25 +217,25 @@ export default function SupplyBaseAzerbaijan() {
               <div className="flex items-center space-x-1">
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
                 >
                   {t("about")}
                 </button>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
                 >
                   {t("services")}
                 </button>
                 <button
                   onClick={() => scrollToSection("faq")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
                 >
                   {t("faq")}
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-base"
+                  className="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 font-medium text-sm"
                 >
                   {t("contact")}
                 </button>
@@ -244,14 +244,14 @@ export default function SupplyBaseAzerbaijan() {
               <div className="flex items-center space-x-3">
                 <div
                   onClick={() => scrollToSection("contact")}
-                  className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-950 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap"
+                  className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap"
                 >
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-base font-medium">050 240 22 30</span>
+                  <span className="text-sm font-medium">050 240 22 30</span>
                 </div>
                 <Button
                   onClick={() => scrollToSection("rfq")}
-                  className="bg-blue-600 hover:bg-blue-700 shadow-sm px-6 py-2 whitespace-nowrap text-base"
+                  className="bg-blue-600 hover:bg-blue-700 shadow-sm px-6 py-2 whitespace-nowrap"
                 >
                   {t("getQuote")}
                 </Button>
@@ -328,11 +328,11 @@ export default function SupplyBaseAzerbaijan() {
       <section id="hero" className="pt-20 pb-16 px-4 relative overflow-hidden">
         {/* Hero Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-700/90 to-slate-900/90 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 to-slate-900/90 z-10"></div>
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('https://links.az/uploads/files/bfe75037cd6405bcc46e9c19af274a3c.png')`,
+              backgroundImage: `url('/images/hero-bg.png')`,
             }}
           ></div>
           {/* Additional overlay for better text readability */}
@@ -341,7 +341,7 @@ export default function SupplyBaseAzerbaijan() {
 
         <div className="container mx-auto relative z-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh]">
-            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 pt-[25px]">
+            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
               <Badge className="mb-4 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                 {t("tagline")}
               </Badge>
@@ -444,37 +444,41 @@ export default function SupplyBaseAzerbaijan() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="https://links.az/uploads/files/554ee81c08a41ecd9dd0e4992af2c0ea.png" alt="SBA - Procurement Process" fill className="object-cover" />
+                <Image src="/images/procurement-process.png" alt="Procurement Process" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h2 className="text-2xl font-semibold">{t("needsAnalysis")}</h2>
+                  <h3 className="font-semibold">{t("needsAnalysis")}</h3>
+                  <p className="text-sm opacity-90">Ehtiyac müəyyənləşdirmə</p>
                 </div>
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="https://links.az/uploads/files/24b7a4337f1c302620d4f979c41f4e7a.png" alt="SBA - Supplier Network" fill className="object-cover" />
+                <Image src="/images/supplier-network.png" alt="Supplier Network" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h2 className="text-2xl font-semibold">{t("supplierNetwork")}</h2>
+                  <h3 className="font-semibold">{t("supplierNetwork")}</h3>
+                  <p className="text-sm opacity-90">Təchizatçı şəbəkəsi</p>
                 </div>
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="https://links.az/uploads/files/3deeb7442bf16b98188040692a5f27fa.png" alt="SBA - Quality Control" fill className="object-cover" />
+                <Image src="/images/quality-control.png" alt="Quality Control" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h2 className="text-2xl font-semibold">{t("qualityAssurance")}</h2>
+                  <h3 className="font-semibold">{t("qualityAssurance")}</h3>
+                  <p className="text-sm opacity-90">Keyfiyyət nəzarəti</p>
                 </div>
               </div>
             </div>
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-600">
               <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <Image src="https://links.az/uploads/files/f2a1e8b230d20323579417d651832030.png" alt="SBA - End to End Service" fill className="object-cover" />
+                <Image src="/images/end-to-end-service.png" alt="End to End Service" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <h2 className="text-2xl font-semibold">{t("endToEndService")}</h2>
+                  <h3 className="font-semibold">{t("endToEndService")}</h3>
+                  <p className="text-sm opacity-90">Tam xidmət</p>
                 </div>
               </div>
             </div>
@@ -572,6 +576,12 @@ export default function SupplyBaseAzerbaijan() {
 
           {/* Procurement as a Service Details */}
           <div className="mb-16">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-4">
+                {t("procurementTitle")}
+              </h3>
+              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">{t("procurementSubtitle")}</p>
+            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               {[
@@ -631,21 +641,21 @@ export default function SupplyBaseAzerbaijan() {
                 title: t("constructionSupplies"),
                 description: t("constructionDesc"),
                 industries: [t("construction"), "Commercial", "Infrastructure"],
-                image: "https://links.az/uploads/files/240840fb5a525304d5230c21d5521eb4.png",
+                image: "/images/construction-materials.png",
               },
               {
                 icon: Truck,
                 title: t("oilGasSupplies"),
                 description: t("oilGasDesc"),
                 industries: ["Upstream", "Downstream", "Petrochemical"],
-                image: "https://links.az/uploads/files/342f14cf8a78e355ce0efd1deb082b4d.png",
+                image: "/images/oil-gas-equipment.png",
               },
               {
                 icon: Shield,
                 title: t("safetyCompliance"),
                 description: t("safetyDesc"),
                 industries: ["HSE", "Quality Control", "Certification"],
-                image: "https://links.az/uploads/files/2ee12d60df5dae2af49b2fd246ea43ea.png",
+                image: "/images/safety-equipment.png",
               },
             ].map((service, index) => (
               <Card
@@ -757,9 +767,9 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">Telefon</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-blue-600 mb-2">(+994 50) 240 22 30</p>
+                <p className="text-lg font-semibold text-blue-600 mb-2">050 240 22 30</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
-                  Daha sürətli xidmət üçün bizə zəng edin. Call for fast response. Звоните для оперативного ответа.
+                  Dərhal yardım üçün bizə zəng edin
                 </CardDescription>
               </CardContent>
             </Card>
@@ -776,9 +786,9 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">WhatsApp</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-green-600 mb-2">(+994 50) 240 22 30</p>
+                <p className="text-lg font-semibold text-green-600 mb-2">050 240 22 30</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
-                  WhatsApp ilə sorğunuzu göndərin. Send your inquiry via WhatsApp. Отправьте ваш запрос через WhatsApp.
+                  WhatsApp söhbəti başladın
                 </CardDescription>
               </CardContent>
             </Card>
@@ -795,7 +805,7 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">{t("emailTitle")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-purple-600 mb-2">sales@supplybase.az</p>
+                <p className="text-lg font-semibold text-purple-600 mb-2">info@supplybase.az</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">{t("emailDesc")}</CardDescription>
               </CardContent>
             </Card>
@@ -1016,15 +1026,13 @@ export default function SupplyBaseAzerbaijan() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <a href="http://www.supplybase.az">
-                  <Image
-                    src="/images/sba-logo.webp"
-                    alt="Supply Base Azerbaijan"
-                    width={70}
-                    height={42}
-                    className="h-11 w-auto"
-                  />
-                </a>
+                <Image
+                  src="/images/sba-logo.webp"
+                  alt="Supply Base Azerbaijan"
+                  width={70}
+                  height={42}
+                  className="h-11 w-auto"
+                />
                 <div>
                   <h3 className="text-xl font-bold">Supply Base Azerbaijan</h3>
                   <p className="text-slate-400 text-sm">{t("tagline")}</p>
@@ -1076,7 +1084,7 @@ export default function SupplyBaseAzerbaijan() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-blue-400" />
-                  <span className="text-slate-300 text-sm">sales@supplybase.az</span>
+                  <span className="text-slate-300 text-sm">info@supplybase.az</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MessageCircle className="h-4 w-4 text-green-400" />
@@ -1089,7 +1097,7 @@ export default function SupplyBaseAzerbaijan() {
           </div>
           <div className="border-t border-slate-700 mt-8 pt-8 text-center">
             <p className="text-slate-400 text-sm">
-              © {new Date().getFullYear()} SUPPLY BASE AZERBAIJAN. {t("rightsReserved")}
+              © {new Date().getFullYear()} Supply Base Azerbaijan. {t("rightsReserved")}
             </p>
           </div>
         </div>

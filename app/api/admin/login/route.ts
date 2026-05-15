@@ -1,36 +1,25 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { sign } from "jsonwebtoken"
 
 // Simple password storage - in production, use proper hashing
 const adminPassword = "admin123" // Default password
 
-// Simple token generation without external dependencies
-function generateToken() {
-  const payload = {
-    admin: true,
-    timestamp: Date.now(),
-    exp: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
-  }
-  return Buffer.from(JSON.stringify(payload)).toString("base64")
-}
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-this-in-production"
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { password } = body
-
-    if (!password) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Parol tələb olunur",
-        },
-        { status: 400 },
-      )
-    }
+    const { password } = await request.json()
 
     if (password === adminPassword) {
-      // Generate simple token
-      const token = generateToken()
+      // Generate JWT token
+      const token = sign(
+        {
+          admin: true,
+          timestamp: Date.now(),
+        },
+        JWT_SECRET,
+        { expiresIn: "24h" },
+      )
 
       return NextResponse.json({
         success: true,

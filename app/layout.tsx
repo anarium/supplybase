@@ -8,14 +8,14 @@ const inter = Inter({ subsets: ["latin"] })
 // In a real application, you would fetch this from your database
 // For now, we'll use default values that can be updated via admin panel
 const defaultSettings = {
-  title: "Supply Base Azerbaijan - Procurement and Supply / Satınalma və Təchizat",
+  title: "Supply Base Azerbaijan - Procurement as a Service",
   metaDescription:
-    "Supply Base Azerbaijan - Professional procurement & supply chain solutions. Peşəkar tədarük və təchizat zənciri həlləri. Expert sourcing, quality assurance & reliable delivery services.",
+    "Supply Base Azerbaijan provides comprehensive procurement and supply chain solutions for various industries. Professional sourcing, quality assurance, and reliable delivery services.",
   metaKeywords:
-    "təchizat şirkəti, supply company, Supply Base Azerbaijan, procurement, supply chain, B2B. sourcing, industrial supplies, construction materials, oil gas equipment, HSE equipment, professional procurement services Azerbaijan",
+    "procurement, supply chain, Azerbaijan, sourcing, industrial supplies, construction materials, oil gas equipment",
   socialTitle: "Supply Base Azerbaijan - Satınalma və Təchizat Xidməti",
   socialImage: "/images/sba-logo.webp",
-  favicon: "https://links.az/uploads/files/e6ec371e46d8c0009d805b1b999b9a1d.png",
+  favicon: "/favicon.ico",
 }
 
 export const metadata: Metadata = {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 
   // Manifest
   manifest: "/site.webmanifest",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -85,21 +85,6 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="canonical" href="https://supplybase.az" />
-        <script defer data-domain="supplybase.az" src="https://the.base.az/js/script.js"></script>
-       
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7YCP7DKJM"></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-Y7YCP7DKJM');
-              `,
-            }}
-          ></script>
-
-
 
         {/* Structured Data for Organization */}
         <script
@@ -108,7 +93,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Supply Base Azerbaijan - Təchizat Şirkəti / Supply Company",
+              name: "Supply Base Azerbaijan",
               url: "https://supplybase.az",
               logo: "https://supplybase.az/images/sba-logo.webp",
               description: defaultSettings.metaDescription,
@@ -121,7 +106,7 @@ export default function RootLayout({
                 "@type": "ContactPoint",
                 telephone: "+994502402230",
                 contactType: "customer service",
-                email: "sales@supplybase.az",
+                email: "info@supplybase.az",
               },
               sameAs: ["https://wa.me/994502402230"],
             }),

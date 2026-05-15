@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Settings,
   FileText,
@@ -27,7 +28,13 @@ import {
   LogOut,
   Lock,
   Key,
+  ImageIcon,
+  Upload,
+  Edit3,
+  Plus,
+  X,
 } from "lucide-react"
+import Image from "next/image"
 
 interface RFQSubmission {
   id: string
@@ -52,13 +59,36 @@ interface RFQSubmission {
 interface SiteSettings {
   title: string
   favicon: string
-  metaDescription: string
-  metaKeywords: string
-  socialTitle: string
-  socialImage: string
-  headerSnippet: string
-  footerSnippet: string
-  analyticsCode: string
+  meta_description: string
+  meta_keywords: string
+  social_title: string
+  social_image: string
+  header_snippet: string
+  footer_snippet: string
+  analytics_code: string
+}
+
+interface SiteImage {
+  id: number
+  name: string
+  original_name: string
+  url: string
+  alt_text: string
+  category: string
+  size: number
+  mime_type: string
+  created_at: string
+}
+
+interface SiteContent {
+  id: number
+  key: string
+  content_az: string
+  content_en: string
+  content_ru: string
+  category: string
+  created_at: string
+  updated_at: string
 }
 
 export default function AdminPanel() {
@@ -70,20 +100,33 @@ export default function AdminPanel() {
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [currentPassword, setCurrentPassword] = useState("")
+
+  // Images state
+  const [images, setImages] = useState<SiteImage[]>([])
+  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [uploadFile, setUploadFile] = useState<File | null>(null)
+  const [uploadAltText, setUploadAltText] = useState("")
+  const [uploadCategory, setUploadCategory] = useState("general")
+
+  // Content state
+  const [content, setContent] = useState<SiteContent[]>([])
+  const [selectedContentCategory, setSelectedContentCategory] = useState("all")
+  const [editingContent, setEditingContent] = useState<SiteContent | null>(null)
+  const [newContentKey, setNewContentKey] = useState("")
+  const [newContentCategory, setNewContentCategory] = useState("general")
+
   const router = useRouter()
 
   const [siteSettings, setSiteSettings] = useState<SiteSettings>({
-    title: "Supply Base Azerbaijan - Procurement as a Service",
+    title: "",
     favicon: "/favicon.ico",
-    metaDescription:
-      "Supply Base Azerbaijan provides comprehensive procurement and supply chain solutions for various industries. Professional sourcing, quality assurance, and reliable delivery services.",
-    metaKeywords:
-      "procurement, supply chain, Azerbaijan, sourcing, industrial supplies, construction materials, oil gas equipment",
-    socialTitle: "Supply Base Azerbaijan - Satınalma və Təchizat Xidməti",
-    socialImage: "/images/sba-logo.webp",
-    headerSnippet: "",
-    footerSnippet: "",
-    analyticsCode: "",
+    meta_description: "",
+    meta_keywords: "",
+    social_title: "",
+    social_image: "",
+    header_snippet: "",
+    footer_snippet: "",
+    analytics_code: "",
   })
 
   // Check authentication
@@ -94,11 +137,8 @@ export default function AdminPanel() {
       return
     }
 
-    // Verify token with server
     fetch("/api/admin/verify", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -106,6 +146,8 @@ export default function AdminPanel() {
           setIsAuthenticated(true)
           fetchSubmissions()
           fetchSettings()
+          fetchImages()
+          fetchContent()
         } else {
           localStorage.removeItem("admin_token")
           router.push("/idareetme/login")
@@ -117,13 +159,11 @@ export default function AdminPanel() {
       })
   }, [router])
 
-  // Fetch settings
+  // Fetch functions
   const fetchSettings = async () => {
     try {
       const response = await fetch("/api/admin/settings", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
-        },
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
       })
       const data = await response.json()
       if (data.success && data.settings) {
@@ -134,14 +174,11 @@ export default function AdminPanel() {
     }
   }
 
-  // Fetch RFQ submissions
   const fetchSubmissions = async () => {
     setIsLoading(true)
     try {
       const response = await fetch("/api/rfq", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
-        },
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
       })
       const data = await response.json()
       if (data.success) {
@@ -154,7 +191,41 @@ export default function AdminPanel() {
     }
   }
 
-  // Save site settings
+  const fetchImages = async () => {
+    try {
+      const url =
+        selectedCategory === "all" ? "/api/admin/upload-image" : `/api/admin/upload-image?category=${selectedCategory}`
+      const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+      })
+      const data = await response.json()
+      if (data.success) {
+        setImages(data.images || [])
+      }
+    } catch (error) {
+      console.error("Error fetching images:", error)
+    }
+  }
+
+  const fetchContent = async () => {
+    try {
+      const url =
+        selectedContentCategory === "all"
+          ? "/api/admin/content"
+          : `/api/admin/content?category=${selectedContentCategory}`
+      const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+      })
+      const data = await response.json()
+      if (data.success) {
+        setContent(data.content || [])
+      }
+    } catch (error) {
+      console.error("Error fetching content:", error)
+    }
+  }
+
+  // Save functions
   const saveSiteSettings = async () => {
     setIsLoading(true)
     try {
@@ -180,15 +251,118 @@ export default function AdminPanel() {
     }
   }
 
-  // Change password
+  const uploadImage = async () => {
+    if (!uploadFile) return
+
+    setIsLoading(true)
+    try {
+      const formData = new FormData()
+      formData.append("file", uploadFile)
+      formData.append("category", uploadCategory)
+      formData.append("altText", uploadAltText)
+
+      const response = await fetch("/api/admin/upload-image", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+        body: formData,
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        alert("Şəkil uğurla yükləndi!")
+        setUploadFile(null)
+        setUploadAltText("")
+        setUploadCategory("general")
+        fetchImages()
+      } else {
+        alert(data.message || "Şəkil yükləmə xətası")
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error)
+      alert("Şəkil yükləmə xətası")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const deleteImage = async (id: number) => {
+    if (!confirm("Bu şəkli silmək istədiyinizə əminsiniz?")) return
+
+    try {
+      const response = await fetch(`/api/admin/upload-image?id=${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+      })
+
+      if (response.ok) {
+        alert("Şəkil uğurla silindi!")
+        fetchImages()
+      } else {
+        alert("Şəkil silmə xətası")
+      }
+    } catch (error) {
+      console.error("Error deleting image:", error)
+      alert("Şəkil silmə xətası")
+    }
+  }
+
+  const saveContent = async (contentData: Partial<SiteContent>) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch("/api/admin/content", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
+        },
+        body: JSON.stringify(contentData),
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        alert("Məzmun uğurla saxlanıldı!")
+        setEditingContent(null)
+        setNewContentKey("")
+        fetchContent()
+      } else {
+        alert(data.message || "Məzmun saxlama xətası")
+      }
+    } catch (error) {
+      console.error("Error saving content:", error)
+      alert("Məzmun saxlama xətası")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const deleteContent = async (key: string) => {
+    if (!confirm("Bu məzmunu silmək istədiyinizə əminsiniz?")) return
+
+    try {
+      const response = await fetch(`/api/admin/content?key=${key}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
+      })
+
+      if (response.ok) {
+        alert("Məzmun uğurla silindi!")
+        fetchContent()
+      } else {
+        alert("Məzmun silmə xətası")
+      }
+    } catch (error) {
+      console.error("Error deleting content:", error)
+      alert("Məzmun silmə xətası")
+    }
+  }
+
+  // Other functions (password change, logout, etc.)
   const changePassword = async (e: React.FormEvent) => {
     e.preventDefault()
-
     if (newPassword !== confirmPassword) {
       alert("Yeni parollar uyğun gəlmir")
       return
     }
-
     if (newPassword.length < 6) {
       alert("Yeni parol ən azı 6 simvol olmalıdır")
       return
@@ -202,14 +376,10 @@ export default function AdminPanel() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
         },
-        body: JSON.stringify({
-          currentPassword,
-          newPassword,
-        }),
+        body: JSON.stringify({ currentPassword, newPassword }),
       })
 
       const result = await response.json()
-
       if (result.success) {
         alert("Parol uğurla dəyişdirildi!")
         setCurrentPassword("")
@@ -226,22 +396,18 @@ export default function AdminPanel() {
     }
   }
 
-  // Logout
   const handleLogout = () => {
     localStorage.removeItem("admin_token")
     router.push("/idareetme/login")
   }
 
-  // Delete submission
   const deleteSubmission = async (id: string) => {
     if (!confirm("Bu sorğunu silmək istədiyinizə əminsiniz?")) return
 
     try {
       const response = await fetch(`/api/rfq/${id}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
-        },
+        headers: { Authorization: `Bearer ${localStorage.getItem("admin_token")}` },
       })
 
       if (response.ok) {
@@ -256,7 +422,6 @@ export default function AdminPanel() {
     }
   }
 
-  // Export submissions to CSV
   const exportToCSV = () => {
     const headers = [
       "ID",
@@ -288,7 +453,7 @@ export default function AdminPanel() {
           `"${sub.additionalComments.replace(/"/g, '""')}"`,
           sub.language,
           sub.submittedAt,
-          sub.files.length,
+          sub.files?.length || 0,
         ].join(","),
       ),
     ].join("\n")
@@ -319,6 +484,25 @@ export default function AdminPanel() {
     }
   }
 
+  const imageCategories = [
+    { value: "all", label: "Hamısı" },
+    { value: "hero", label: "Ana Səhifə" },
+    { value: "about", label: "Haqqımızda" },
+    { value: "services", label: "Xidmətlər" },
+    { value: "general", label: "Ümumi" },
+  ]
+
+  const contentCategories = [
+    { value: "all", label: "Hamısı" },
+    { value: "navigation", label: "Naviqasiya" },
+    { value: "header", label: "Başlıq" },
+    { value: "hero", label: "Ana Səhifə" },
+    { value: "about", label: "Haqqımızda" },
+    { value: "services", label: "Xidmətlər" },
+    { value: "contact", label: "Əlaqə" },
+    { value: "general", label: "Ümumi" },
+  ]
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -336,27 +520,35 @@ export default function AdminPanel() {
         <div className="mb-8 flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">İdarəetmə Paneli</h1>
-            <p className="text-gray-600">Sayt parametrlərini idarə edin və form sorğularını görün</p>
+            <p className="text-gray-600">Sayt parametrlərini idarə edin və məzmunu redaktə edin</p>
           </div>
-          <Button onClick={handleLogout} variant="outline" className="flex items-center space-x-2">
+          <Button onClick={handleLogout} variant="outline" className="flex items-center space-x-2 bg-transparent">
             <LogOut className="h-4 w-4" />
             <span>Çıxış</span>
           </Button>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="settings" className="flex items-center space-x-2">
               <Settings className="h-4 w-4" />
-              <span>Sayt Parametrləri</span>
+              <span>Parametrlər</span>
+            </TabsTrigger>
+            <TabsTrigger value="images" className="flex items-center space-x-2">
+              <ImageIcon className="h-4 w-4" />
+              <span>Şəkillər</span>
+            </TabsTrigger>
+            <TabsTrigger value="content" className="flex items-center space-x-2">
+              <Edit3 className="h-4 w-4" />
+              <span>Məzmun</span>
             </TabsTrigger>
             <TabsTrigger value="snippets" className="flex items-center space-x-2">
               <Code className="h-4 w-4" />
-              <span>Kod Parçaları</span>
+              <span>Kodlar</span>
             </TabsTrigger>
             <TabsTrigger value="submissions" className="flex items-center space-x-2">
               <FileText className="h-4 w-4" />
-              <span>RFQ Sorğuları ({rfqSubmissions.length})</span>
+              <span>Sorğular ({rfqSubmissions.length})</span>
             </TabsTrigger>
             <TabsTrigger value="security" className="flex items-center space-x-2">
               <Lock className="h-4 w-4" />
@@ -372,9 +564,7 @@ export default function AdminPanel() {
                   <Settings className="h-5 w-5" />
                   <span>Sayt Parametrləri</span>
                 </CardTitle>
-                <CardDescription>
-                  Saytınızın əsas parametrlərini və meta məlumatlarını konfiqurasiya edin
-                </CardDescription>
+                <CardDescription>Saytınızın əsas parametrlərini konfiqurasiya edin</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -402,8 +592,8 @@ export default function AdminPanel() {
                   <Label htmlFor="metaDescription">Meta Təsvir</Label>
                   <Textarea
                     id="metaDescription"
-                    value={siteSettings.metaDescription}
-                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, metaDescription: e.target.value }))}
+                    value={siteSettings.meta_description}
+                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, meta_description: e.target.value }))}
                     placeholder="Axtarış mühərrikləri üçün saytınızın qısa təsviri"
                     rows={3}
                   />
@@ -413,8 +603,8 @@ export default function AdminPanel() {
                   <Label htmlFor="metaKeywords">Meta Açar Sözlər</Label>
                   <Input
                     id="metaKeywords"
-                    value={siteSettings.metaKeywords}
-                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, metaKeywords: e.target.value }))}
+                    value={siteSettings.meta_keywords}
+                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, meta_keywords: e.target.value }))}
                     placeholder="açar söz1, açar söz2, açar söz3"
                   />
                 </div>
@@ -424,8 +614,8 @@ export default function AdminPanel() {
                     <Label htmlFor="socialTitle">Sosial Paylaşım Başlığı</Label>
                     <Input
                       id="socialTitle"
-                      value={siteSettings.socialTitle}
-                      onChange={(e) => setSiteSettings((prev) => ({ ...prev, socialTitle: e.target.value }))}
+                      value={siteSettings.social_title}
+                      onChange={(e) => setSiteSettings((prev) => ({ ...prev, social_title: e.target.value }))}
                       placeholder="Sosial mediada paylaşılanda görünəcək başlıq"
                     />
                   </div>
@@ -433,8 +623,8 @@ export default function AdminPanel() {
                     <Label htmlFor="socialImage">Sosial Paylaşım Şəkli URL</Label>
                     <Input
                       id="socialImage"
-                      value={siteSettings.socialImage}
-                      onChange={(e) => setSiteSettings((prev) => ({ ...prev, socialImage: e.target.value }))}
+                      value={siteSettings.social_image}
+                      onChange={(e) => setSiteSettings((prev) => ({ ...prev, social_image: e.target.value }))}
                       placeholder="/images/social-share.jpg"
                     />
                   </div>
@@ -448,6 +638,303 @@ export default function AdminPanel() {
             </Card>
           </TabsContent>
 
+          {/* Images Tab */}
+          <TabsContent value="images" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <h2 className="text-2xl font-bold">Şəkil İdarəetməsi</h2>
+                <p className="text-gray-600">Saytınızın şəkillərini yükləyin və idarə edin</p>
+              </div>
+              <Select
+                value={selectedCategory}
+                onValueChange={(value) => {
+                  setSelectedCategory(value)
+                  fetchImages()
+                }}
+              >
+                <SelectTrigger className="w-48">
+                  <SelectValue placeholder="Kateqoriya seçin" />
+                </SelectTrigger>
+                <SelectContent>
+                  {imageCategories.map((cat) => (
+                    <SelectItem key={cat.value} value={cat.value}>
+                      {cat.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Upload Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <Upload className="h-5 w-5" />
+                  <span>Yeni Şəkil Yüklə</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="imageFile">Şəkil Faylı</Label>
+                    <Input
+                      id="imageFile"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUploadFile(e.target.files?.[0] || null)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="altText">Alt Mətn</Label>
+                    <Input
+                      id="altText"
+                      value={uploadAltText}
+                      onChange={(e) => setUploadAltText(e.target.value)}
+                      placeholder="Şəkil təsviri"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="category">Kateqoriya</Label>
+                    <Select value={uploadCategory} onValueChange={setUploadCategory}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {imageCategories
+                          .filter((cat) => cat.value !== "all")
+                          .map((cat) => (
+                            <SelectItem key={cat.value} value={cat.value}>
+                              {cat.label}
+                            </SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Button onClick={uploadImage} disabled={!uploadFile || isLoading}>
+                  <Upload className="h-4 w-4 mr-2" />
+                  {isLoading ? "Yüklənir..." : "Şəkil Yüklə"}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Images Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {images.map((image) => (
+                <Card key={image.id} className="overflow-hidden">
+                  <div className="relative h-48">
+                    <Image
+                      src={image.url || "/placeholder.svg"}
+                      alt={image.alt_text || image.original_name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <CardContent className="p-4">
+                    <h4 className="font-medium text-sm truncate">{image.original_name}</h4>
+                    <p className="text-xs text-gray-500 mb-2">{image.category}</p>
+                    <div className="flex justify-between items-center">
+                      <Badge variant="outline" className="text-xs">
+                        {(image.size / 1024).toFixed(1)} KB
+                      </Badge>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => deleteImage(image.id)}
+                        className="text-red-600 hover:text-red-700"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* Content Management Tab */}
+          <TabsContent value="content" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <h2 className="text-2xl font-bold">Məzmun İdarəetməsi</h2>
+                <p className="text-gray-600">Saytınızın mətnlərini 3 dildə redaktə edin</p>
+              </div>
+              <div className="flex space-x-2">
+                <Select
+                  value={selectedContentCategory}
+                  onValueChange={(value) => {
+                    setSelectedContentCategory(value)
+                    fetchContent()
+                  }}
+                >
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Kateqoriya seçin" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {contentCategories.map((cat) => (
+                      <SelectItem key={cat.value} value={cat.value}>
+                        {cat.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Button
+                  onClick={() => {
+                    setEditingContent({
+                      id: 0,
+                      key: newContentKey,
+                      content_az: "",
+                      content_en: "",
+                      content_ru: "",
+                      category: newContentCategory,
+                      created_at: "",
+                      updated_at: "",
+                    })
+                  }}
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Yeni Məzmun
+                </Button>
+              </div>
+            </div>
+
+            {/* Content List */}
+            <div className="grid gap-4">
+              {content.map((item) => (
+                <Card key={item.id}>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="text-lg">{item.key}</CardTitle>
+                        <CardDescription>{item.category}</CardDescription>
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm" onClick={() => setEditingContent(item)}>
+                          <Edit3 className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => deleteContent(item.key)}
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-3 gap-4 text-sm">
+                      <div>
+                        <Label className="text-xs font-medium text-gray-500">AZ</Label>
+                        <p className="mt-1 p-2 bg-gray-50 rounded text-xs">{item.content_az || "Boş"}</p>
+                      </div>
+                      <div>
+                        <Label className="text-xs font-medium text-gray-500">EN</Label>
+                        <p className="mt-1 p-2 bg-gray-50 rounded text-xs">{item.content_en || "Boş"}</p>
+                      </div>
+                      <div>
+                        <Label className="text-xs font-medium text-gray-500">RU</Label>
+                        <p className="mt-1 p-2 bg-gray-50 rounded text-xs">{item.content_ru || "Boş"}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Edit Content Modal */}
+            {editingContent && (
+              <Card className="fixed inset-0 z-50 m-4 overflow-auto bg-white">
+                <CardHeader>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>
+                      {editingContent.id === 0 ? "Yeni Məzmun Əlavə Et" : `"${editingContent.key}" Redaktə Et`}
+                    </CardTitle>
+                    <Button variant="outline" onClick={() => setEditingContent(null)}>
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {editingContent.id === 0 && (
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="contentKey">Açar</Label>
+                        <Input
+                          id="contentKey"
+                          value={editingContent.key}
+                          onChange={(e) => setEditingContent({ ...editingContent, key: e.target.value })}
+                          placeholder="məsələn: hero_title"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="contentCategory">Kateqoriya</Label>
+                        <Select
+                          value={editingContent.category}
+                          onValueChange={(value) => setEditingContent({ ...editingContent, category: value })}
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {contentCategories
+                              .filter((cat) => cat.value !== "all")
+                              .map((cat) => (
+                                <SelectItem key={cat.value} value={cat.value}>
+                                  {cat.label}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="grid gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="contentAz">Azərbaycan dili</Label>
+                      <Textarea
+                        id="contentAz"
+                        value={editingContent.content_az}
+                        onChange={(e) => setEditingContent({ ...editingContent, content_az: e.target.value })}
+                        rows={3}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="contentEn">İngilis dili</Label>
+                      <Textarea
+                        id="contentEn"
+                        value={editingContent.content_en}
+                        onChange={(e) => setEditingContent({ ...editingContent, content_en: e.target.value })}
+                        rows={3}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="contentRu">Rus dili</Label>
+                      <Textarea
+                        id="contentRu"
+                        value={editingContent.content_ru}
+                        onChange={(e) => setEditingContent({ ...editingContent, content_ru: e.target.value })}
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex space-x-2">
+                    <Button onClick={() => saveContent(editingContent)} disabled={isLoading}>
+                      <Save className="h-4 w-4 mr-2" />
+                      {isLoading ? "Saxlanılır..." : "Saxla"}
+                    </Button>
+                    <Button variant="outline" onClick={() => setEditingContent(null)}>
+                      Ləğv et
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
           {/* Code Snippets Tab */}
           <TabsContent value="snippets" className="space-y-6">
             <Card>
@@ -456,42 +943,40 @@ export default function AdminPanel() {
                   <Code className="h-5 w-5" />
                   <span>Kod Parçaları</span>
                 </CardTitle>
-                <CardDescription>Saytınıza xüsusi kod parçaları əlavə edin (analitika, izləmə və s.)</CardDescription>
+                <CardDescription>Saytınıza xüsusi kod parçaları əlavə edin</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="headerSnippet">Başlıq Kod Parçası</Label>
                   <Textarea
                     id="headerSnippet"
-                    value={siteSettings.headerSnippet}
-                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, headerSnippet: e.target.value }))}
+                    value={siteSettings.header_snippet}
+                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, header_snippet: e.target.value }))}
                     placeholder="<head> bölməsinə əlavə ediləcək kod"
                     rows={6}
                     className="font-mono text-sm"
                   />
-                  <p className="text-sm text-gray-500">Bu kod bütün səhifələrin head bölməsinə əlavə ediləcək</p>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="footerSnippet">Alt Hissə Kod Parçası</Label>
                   <Textarea
                     id="footerSnippet"
-                    value={siteSettings.footerSnippet}
-                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, footerSnippet: e.target.value }))}
+                    value={siteSettings.footer_snippet}
+                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, footer_snippet: e.target.value }))}
                     placeholder="</body> etiketindən əvvəl əlavə ediləcək kod"
                     rows={6}
                     className="font-mono text-sm"
                   />
-                  <p className="text-sm text-gray-500">Bu kod body etiketinin bağlanmasından əvvəl əlavə ediləcək</p>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="analyticsCode">Analitika Kodu</Label>
                   <Textarea
                     id="analyticsCode"
-                    value={siteSettings.analyticsCode}
-                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, analyticsCode: e.target.value }))}
-                    placeholder="Google Analytics, Facebook Pixel və ya digər izləmə kodları"
+                    value={siteSettings.analytics_code}
+                    onChange={(e) => setSiteSettings((prev) => ({ ...prev, analytics_code: e.target.value }))}
+                    placeholder="Google Analytics və ya digər izləmə kodları"
                     rows={4}
                     className="font-mono text-sm"
                   />
@@ -717,7 +1202,7 @@ export default function AdminPanel() {
                       )}
 
                       {/* Files */}
-                      {selectedSubmission.files.length > 0 && (
+                      {selectedSubmission.files && selectedSubmission.files.length > 0 && (
                         <div className="space-y-2">
                           <h4 className="font-medium">Əlavə Edilmiş Fayllar ({selectedSubmission.files.length})</h4>
                           <div className="space-y-2">

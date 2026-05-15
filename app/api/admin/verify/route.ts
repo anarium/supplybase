@@ -1,19 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { verify } from "jsonwebtoken"
 
-function verifyToken(token: string) {
-  try {
-    const payload = JSON.parse(Buffer.from(token, "base64").toString())
-
-    // Check if token is expired
-    if (payload.exp && Date.now() > payload.exp) {
-      return null
-    }
-
-    return payload.admin === true ? payload : null
-  } catch {
-    return null
-  }
-}
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-this-in-production"
 
 export async function GET(request: NextRequest) {
   try {
@@ -30,14 +18,14 @@ export async function GET(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const decoded = verifyToken(token)
 
-    if (decoded) {
+    try {
+      const decoded = verify(token, JWT_SECRET)
       return NextResponse.json({
         success: true,
         user: decoded,
       })
-    } else {
+    } catch (jwtError) {
       return NextResponse.json(
         {
           success: false,

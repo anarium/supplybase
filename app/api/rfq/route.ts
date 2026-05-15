@@ -1,8 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { neon } from "@neondatabase/serverless"
 
-// Simple in-memory storage for demo purposes
-// In production, you would use a proper database like PostgreSQL, MongoDB, etc.
-const rfqRequests: any[] = []
+const sql = neon(process.env.DATABASE_URL!)
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,27 +9,24 @@ export async function POST(request: NextRequest) {
 
     // Extract form fields
     const rfqData = {
-      id: Date.now().toString(),
-      companyName: formData.get("companyName"),
-      contactPerson: formData.get("contactPerson"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      industry: formData.get("industry"),
-      urgency: formData.get("urgency"),
-      projectDescription: formData.get("projectDescription"),
-      additionalComments: formData.get("additionalComments"),
-      language: formData.get("language"),
-      submittedAt: new Date().toISOString(),
-      files: [],
+      company_name: formData.get("companyName") as string,
+      contact_person: formData.get("contactPerson") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      industry: formData.get("industry") as string,
+      urgency: formData.get("urgency") as string,
+      project_description: formData.get("projectDescription") as string,
+      additional_comments: formData.get("additionalComments") as string,
+      language: (formData.get("language") as string) || "az",
     }
 
     // Handle file uploads
     const files = formData.getAll("files") as File[]
+    const fileData = []
+
     for (const file of files) {
       if (file.size > 0) {
-        // In production, you would upload files to cloud storage (AWS S3, Cloudinary, etc.)
-        // For demo, we'll just store file metadata
-        rfqData.files.push({
+        fileData.push({
           name: file.name,
           size: file.size,
           type: file.type,
@@ -39,23 +35,25 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Save to "database" (in production, use proper database)
-    rfqRequests.push(rfqData)
+    // Save to database
+    const result = await sql`
+      INSERT INTO rfq_submissions (
+        company_name, contact_person, email, phone, industry, urgency,
+        project_description, additional_comments, language, files
+      ) VALUES (
+        ${rfqData.company_name}, ${rfqData.contact_person}, ${rfqData.email}, 
+        ${rfqData.phone}, ${rfqData.industry}, ${rfqData.urgency},
+        ${rfqData.project_description}, ${rfqData.additional_comments}, 
+        ${rfqData.language}, ${JSON.stringify(fileData)}
+      ) RETURNING id
+    `
 
-    // Log for demo purposes
-    console.log("New RFQ Request:", rfqData)
-    console.log("Total requests in database:", rfqRequests.length)
-
-    // In production, you might also:
-    // 1. Send email notifications to admin
-    // 2. Send confirmation email to customer
-    // 3. Integrate with CRM systems
-    // 4. Store files in cloud storage
+    console.log("New RFQ Request saved to database:", result[0].id)
 
     return NextResponse.json({
       success: true,
       message: "RFQ request submitted successfully",
-      requestId: rfqData.id,
+      requestId: result[0].id,
     })
   } catch (error) {
     console.error("Error processing RFQ request:", error)
@@ -63,13 +61,30 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET endpoint to retrieve RFQ requests (for admin purposes)
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const requests = await sql`
+      SELECT 
+        id::text,
+        company_name as "companyName",
+        contact_person as "contactPerson", 
+        email,
+        phone,
+        industry,
+        urgency,
+        project_description as "projectDescription",
+        additional_comments as "additionalComments",
+        language,
+        files,
+        created_at as "submittedAt"
+      FROM rfq_submissions 
+      ORDER BY created_at DESC
+    `
+
     return NextResponse.json({
       success: true,
-      requests: rfqRequests,
-      total: rfqRequests.length,
+      requests,
+      total: requests.length,
     })
   } catch (error) {
     console.error("Error retrieving RFQ requests:", error)
