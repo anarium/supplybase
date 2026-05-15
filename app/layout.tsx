@@ -104,11 +104,11 @@ export default function RootLayout({
               },
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+994502402230",
+                telephone: "+994556300093",
                 contactType: "customer service",
                 email: "info@supplybase.az",
               },
-              sameAs: ["https://wa.me/994502402230"],
+              sameAs: ["https://wa.me/994556300093"],
             }),
           }}
         />

@@ -151,7 +151,7 @@ export default function SupplyBaseAzerbaijan() {
   }
 
   const openWhatsApp = () => {
-    window.open("https://wa.me/994502402230", "_blank")
+    window.open("https://wa.me/994556300093", "_blank")
   }
 
   const openEmail = () => {
@@ -159,7 +159,7 @@ export default function SupplyBaseAzerbaijan() {
   }
 
   const makeCall = () => {
-    window.location.href = "tel:+994502402230"
+    window.location.href = "tel:+994556300093"
   }
 
   useEffect(() => {
@@ -247,7 +247,7 @@ export default function SupplyBaseAzerbaijan() {
                   className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap"
                 >
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm font-medium">050 240 22 30</span>
+                  <span className="text-sm font-medium">055 630 00 93</span>
                 </div>
                 <Button
                   onClick={() => scrollToSection("rfq")}
@@ -289,7 +289,7 @@ export default function SupplyBaseAzerbaijan() {
                   className="flex items-center space-x-2 px-3 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors w-fit mb-3"
                 >
                   <Phone className="h-4 w-4" />
-                  <span className="text-sm font-medium">050 240 22 30</span>
+                  <span className="text-sm font-medium">055 630 00 93</span>
                 </button>
                 <button
                   onClick={() => scrollToSection("about")}
@@ -767,7 +767,7 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">Telefon</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-blue-600 mb-2">050 240 22 30</p>
+                <p className="text-lg font-semibold text-blue-600 mb-2">055 630 00 93</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
                   Dərhal yardım üçün bizə zəng edin
                 </CardDescription>
@@ -786,7 +786,7 @@ export default function SupplyBaseAzerbaijan() {
                 <CardTitle className="text-slate-800 dark:text-white">WhatsApp</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-semibold text-green-600 mb-2">050 240 22 30</p>
+                <p className="text-lg font-semibold text-green-600 mb-2">055 630 00 93</p>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
                   WhatsApp söhbəti başladın
                 </CardDescription>
@@ -1080,7 +1080,7 @@ export default function SupplyBaseAzerbaijan() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-4 w-4 text-blue-400" />
-                  <span className="text-slate-300 text-sm">050 240 22 30</span>
+                  <span className="text-slate-300 text-sm">055 630 00 93</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-blue-400" />

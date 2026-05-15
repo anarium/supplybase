@@ -121,7 +121,7 @@ export const translations = {
       {
         question: "Necə sifariş verə bilərəm?",
         answer:
-          "Sifariş vermək üçün 4 yol var: 1) Saytımızdakı RFQ formasını doldurun, 2) info@supplybase.az ünvanına email göndərin, 3) +994 50 240 22 30 nömrəsinə zəng edin, 4) WhatsApp vasitəsilə bizə yazın. Komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.",
+          "Sifariş vermək üçün 4 yol var: 1) Saytımızdakı RFQ formasını doldurun, 2) info@supplybase.az ünvanına email göndərin, 3) +994 55 630 00 93 nömrəsinə zəng edin, 4) WhatsApp vasitəsilə bizə yazın. Komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.",
       },
       {
         question: "Hansı sənaye sahələrində xidmət göstərirsiniz?",
@@ -147,7 +147,7 @@ export const translations = {
 
     // RFQ
     rfqBadge: "Təklif Sorğusu",
-    rfqTitle: "Sorğunuzu Göndərin Təklifinizi Alın",
+    rfqTitle: "Qiymət Təklifi Sorğusu",
     rfqSubtitle:
       "Tədarük ehtiyaclarınız haqqında bizə məlumat verin və tələblərinizə uyğun ətraflı təklif təqdim edəcəyik.",
 
@@ -339,7 +339,7 @@ export const translations = {
       {
         question: "How can I place an order?",
         answer:
-          "There are 4 ways to place an order: 1) Fill out the RFQ form on our website, 2) Send an email to info@supplybase.az, 3) Call +994 50 240 22 30, 4) Contact us via WhatsApp. Our team will contact you within 24 hours.",
+          "There are 4 ways to place an order: 1) Fill out the RFQ form on our website, 2) Send an email to info@supplybase.az, 3) Call +994 55 630 00 93, 4) Contact us via WhatsApp. Our team will contact you within 24 hours.",
       },
       {
         question: "Which industries do you serve?",
@@ -551,7 +551,7 @@ export const translations = {
       {
         question: "Как я могу разместить заказ?",
         answer:
-          "Есть 4 способа разместить заказ: 1) Заполните форму RFQ на нашем сайте, 2) Отправьте письмо на info@supplybase.az, 3) Позвоните по номеру +994 50 240 22 30, 4) Свяжитесь с нами через WhatsApp. Наша команда свяжется с вами в течение 24 часов.",
+          "Есть 4 способа разместить заказ: 1) Заполните форму RFQ на нашем сайте, 2) Отправьте письмо на info@supplybase.az, 3) Позвоните по номеру +994 55 630 00 93, 4) Свяжитесь с нами через WhatsApp. Наша команда свяжется с вами в течение 24 часов.",
       },
       {
         question: "В каких отраслях вы работаете?",
